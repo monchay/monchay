@@ -537,11 +537,9 @@
         .order-form.show {
             display: block;
         }
-
         .address-input-group {
             position: relative;
         }
-
         .map-icon {
             position: absolute;
             right: 12px;
@@ -554,7 +552,6 @@
         .map-icon:hover {
             color: #018a3d;
         }
-
         .submit-btn:disabled {
             background: #6c757d;
             cursor: not-allowed;
@@ -732,7 +729,7 @@
         .password-input-container.checking .password-spinner {
             display: block;
         }
-        .menu-manager.disabled, .store-hours-manager.disabled { 
+        .menu-manager.disabled, .store-hours-manager.disabled, .order-manager.disabled { 
             opacity: .5; 
             pointer-events: none; 
         }
@@ -878,52 +875,7 @@
             cursor: pointer;
             background-color: #fff;
         }
-        @media (min-width: 1024px) {
-            .products-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-        }
-        @media (min-width: 769px) and (max-width: 1023px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-            }
-        }
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .product-image {
-                margin: 1px;
-                border-radius: 15px;
-            }
-            .product-name {
-                font-size: 18px;
-                height: 32px;
-            }
-            .product-price {
-                font-size: 18px;
-            }
-            .add-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 18px;
-            }
-            .quantity-btn {
-                width: 28px;
-                height: 28px;
-                font-size: 24px;
-            }
-            .quantity-display {
-                font-size: 15px;
-                min-width: 15px;
-            }
-            .cart-modal {
-                padding: 2px !important;
-            }
-        }
+        
 		
 		
 		/* Thêm CSS này vào phần <style> trong file HTML */
@@ -1238,8 +1190,8 @@
         .admin-shop-info-item {
             display: flex;
             align-items: flex-start; /* Chỉnh thành flex-start để tương thích với nhiều dòng */
-            padding: 6px 0;
-            font-size: 14px;
+            padding: 4px 0;
+            font-size: 15px;
             border-bottom: 1px solid #f0f0f0;
         }
         .admin-shop-info-item:last-child {
@@ -1259,6 +1211,243 @@
             text-decoration: underline;
         }
 		
+        /* === NEW STYLES FOR ORDER MANAGEMENT === */
+        .order-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-left: 5px solid #ffc107; /* Màu vàng cho trạng thái chờ */
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .order-card.status-dang-giao { border-left-color: #0d6efd; }
+        .order-card.status-hoan-thanh { border-left-color: #198754; }
+        .order-card.status-da-huy { border-left-color: #dc3545; opacity: 0.7; }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+        }
+        .order-customer { font-weight: bold; font-size: 15px; color: #02a046; }
+        .order-total { font-weight: bold; font-size: 15px; color: #02a046; }
+
+        .order-details p {
+            margin: 4px 0;
+            line-height: 1.5;
+            color: #555;
+        }
+        .order-details strong { color: #333; }
+        .order-items {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+        .order-actions {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .order-actions label { font-weight: 600; }
+        .order-status-select {
+            flex: 1;
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+        
+        /* === NEW STYLES FOR ADMIN REDESIGN === */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .admin-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .admin-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-color: #02a046;
+        }
+        .admin-card-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .admin-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        .management-view {
+            display: none; /* Hide management sections by default */
+        }
+        .back-to-grid-btn {
+            background: #fff4cd;
+            color: #333;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+			margin-top: 8px;
+            margin-bottom: -5px;
+            display: inline-block;
+        }
+        .back-to-grid-btn:hover {
+            background: #ced4da;
+        }
+
+        /* === CẬP NHẬT #1: GIAO DIỆN ADMIN FULL MÀN HÌNH TRÊN DI ĐỘNG === */
+        @media (max-width: 768px) {
+            .admin-popup {
+                padding: 0;
+            }
+            .admin-popup-content {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 10px;
+            }
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .product-image {
+                margin: 1px;
+                border-radius: 15px;
+            }
+            .product-name {
+                font-size: 18px;
+                height: 32px;
+            }
+            .product-price {
+                font-size: 18px;
+            }
+            .add-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+            }
+            .quantity-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 24px;
+            }
+            .quantity-display {
+                font-size: 15px;
+                min-width: 15px;
+            }
+            .cart-modal {
+                padding: 2px !important;
+            }
+        }
+
+        /* === CẬP NHẬT #2: GIAO DIỆN MÀN HÌNH NHẬP MẬT KHẨU MỚI === */
+        .password-prompt {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            display: none; /* Sẽ được bật bằng JS */
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .password-prompt-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .password-prompt-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .password-prompt-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .password-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .password-inputs input {
+            width: 45px;
+            height: 55px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s;
+            -moz-appearance: textfield; /* Tắt mũi tên tăng/giảm trên Firefox */
+        }
+        .password-inputs input::-webkit-outer-spin-button,
+        .password-inputs input::-webkit-inner-spin-button {
+            -webkit-appearance: none; /* Tắt mũi tên tăng/giảm trên Chrome */
+            margin: 0;
+        }
+        .password-inputs input:focus {
+            border-color: #02a046;
+            box-shadow: 0 0 0 3px rgba(2, 160, 70, 0.15);
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .password-prompt.shake .password-prompt-content {
+            animation: shake 0.5s ease-in-out;
+        }
+        .password-close-btn {
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+            }
+        }
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -1277,305 +1466,7 @@
     </div>
     <div class="products-container">
         <div class="products-grid store-closed" id="productsGrid">
-            <div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Hủ tíu Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Hủ tíu Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Hủ tíu Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Hủ tíu Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-  
-<div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/13Kr5615/Bun-Bo-sua.png" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Bún bò Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Bún bò Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún bò Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún bò Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/YSnNQHS5/Bun-Rieu-Chay.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Bún riêu Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Bún riêu Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún riêu Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún riêu Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-	<div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/fW5TH5NH/Banh-Canh-Chay.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Banh canh Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Bánh canh Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bánh canh Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bánh canh Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-	<div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/JnsNq2DG/buthai.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Bún Thái Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Bún Thái Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún Thái Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún Thái Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<div class="product-card" data-category="hot">
-                <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/rpFCdmqG/Bun-Xao-Chay.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Bún xào Chay</div>
-                    <div class="product-footer">
-                        <div class="product-price">25.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Bún xào Chay', 25000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún xào Chay', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún xào Chay', 25000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<div class="product-card" data-category="hot">
-    <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Bún măng Chay</div>
-        <div class="product-footer">
-            <div class="product-price">25.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Bún măng Chay', 25000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún măng Chay', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún măng Chay', 25000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-category="hot">
-    <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Hoành thánh Chay</div>
-        <div class="product-footer">
-            <div class="product-price">25.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Hoành thánh Chay', 25000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Hoành thánh Chay', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Hoành thánh Chay', 25000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-category="hot">
-    <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Bún mắm Chay</div>
-        <div class="product-footer">
-            <div class="product-price">25.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Bún mắm Chay', 25000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún mắm Chay', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún mắm Chay', 25000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product-card" data-category="hot">
-   <div class="product-image hot-label">
-    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Món chay" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Mì Chay</div>
-        <div class="product-footer">
-            <div class="product-price">25.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Mì Chay', 25000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Mì Chay', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Mì Chay', 25000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            <div class="product-card" data-category="ready">
-                <div class="product-image popular-label">
-    <img src="https://i.postimg.cc/ZYyPvXzQ/NuocSam.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Nước sâm" loading="lazy">
-</div>
-                <div class="product-info">
-                    <div class="product-name">Nước sâm</div>
-                    <div class="product-footer">
-                        <div class="product-price">8.000</div>
-                        <div class="product-controls">
-                            <button class="add-btn" onclick="addToCart('Nước sâm', 5000, this)">+</button>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước sâm', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước sâm', 5000, this)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-		<div class="product-card" data-category="ready">
-    <div class="product-image popular-label">
-    <img src="https://i.postimg.cc/yY4mmnV8/tiato.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Nước Tía tô" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Nước Tía tô</div>
-        <div class="product-footer">
-            <div class="product-price">8.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Nước Tía Tô', 5000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước Tía Tô', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước Tía Tô', 5000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="product-card" data-category="ready">
-    <div class="product-image popular-label">
-    <img src="https://i.postimg.cc/x8HKrNPQ/SuongSa.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Sương sa Hạt é" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Sương sa Hạt é</div>
-        <div class="product-footer">
-            <div class="product-price">8.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Sương sa Hạt é', 5000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Sương sa Hạt é', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Sương sa Hạt é', 5000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="product-card" data-category="ready">
-    <div class="product-image popular-label">
-    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" 
-         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-         alt="Sương sa Hạt é" loading="lazy">
-</div>
-    <div class="product-info">
-        <div class="product-name">Nước Suối</div>
-        <div class="product-footer">
-            <div class="product-price">8.000</div>
-            <div class="product-controls">
-                <button class="add-btn" onclick="addToCart('Nước Suối', 5000, this)">+</button>
-                <div class="quantity-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước Suối', this)">-</button>
-                    <span class="quantity-display">1</span>
-                    <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước Suối', 5000, this)">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
     </div>
     <div class="cart-summary" id="cartSummary">
         <div class="cart-summary-left">
@@ -1703,91 +1594,117 @@
     </div>
 	
 	<div class="admin-popup" id="adminPopup" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
-    <div class="admin-popup-content">
-        <div class="admin-header">
-            <h2 id="adminTitle">QUẢN LÝ QUÁN ĂN</h2>
-            <button onclick="closeAdminPopup()" aria-label="Đóng">✖</button>
-        </div>
-        <div class="admin-body">
-            <div id="adminAlerts" class="admin-alert info">Nhập mật khẩu để Điều chỉnh</div>
-            <div class="admin-login">
-                <label style="font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; display: block;">Mật khẩu quản lý</label>
-                <div class="password-input-container">
-                    <input type="password" id="adminPass" class="form-input" placeholder="Nhập mật khẩu" />
-                    <div class="password-spinner"></div>
-                </div>
-                <div style="margin-top: 10px;">
-                    <button style="background: #02a046; color: white; border: 1px solid #ddd; border-radius: 8px; padding: 6px 8px; cursor: pointer; font-size: 13px;" onclick="changePassword()">Đổi mật khẩu</button>
-                </div>
+        <div class="admin-popup-content">
+            <div class="admin-header">
+                <h2 id="adminTitle">QUẢN LÝ QUÁN ĂN</h2>
+                <button onclick="closeAdminPopup()" aria-label="Đóng">✖</button>
             </div>
+            <div class="admin-body">
 
-            <div id="menuManager" class="management-section menu-manager disabled">
-                <details>
-                    <summary>Quản lý MENU</summary>
-                    <div class="details-content">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                             <input type="search" id="menuSearch" placeholder="Tìm món..." style="width: calc(100% - 100px); padding: 8px 10px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" oninput="renderAdminMenuList()" />
-                            <button style="background: #e8f5e9; color: #02a046; border: 1px solid #a5d6a7; border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px;" onclick="fetchAdminMenu()">Tải lại</button>
+                <div class="management-section" style="margin-top: 0;">
+                    <details open id="adminShopInfoSection">
+                        <summary>QUÁN CHAY 6 NGON</summary>
+                        <div class="details-content">
+                            <div class="admin-shop-info-item" id="adminShopOpeningHours"><strong>Giờ mở cửa:</strong> Đang tải...</div>
+                            <div class="admin-shop-info-item"><strong>Địa chỉ:</strong> <span style="color: #02a046; font-weight: 600;">126/0 Lê Lợi, Xã Hóc Môn, Tp.HCM</span></div>
+                            <div class="admin-shop-info-item"><strong>Vị trí:</strong> <a href="https://maps.google.com/?q=126/0+Lê+Lợi,+Hóc+Môn" target="_blank">Xem trên Google Maps</a></div>
+                            <div class="admin-shop-info-item"><strong>Điện thoại:</strong> <a href="tel:0909112233">0909 112 233</a></div>
+                            <div class="admin-shop-info-item"><strong>Zalo:</strong> <a href="https://zalo.me/0909112233" target="_blank">Kết bạn Zalo</a></div>
                         </div>
-                        <div id="loadAlert" class="admin-alert"></div>
-                        <div id="adminMenuList" style="max-height: 50vh; overflow-y: auto;">Hãy đăng nhập để Điều chỉnh</div>
+                    </details>
+                </div>
+    
+                <div id="adminGrid" class="admin-grid">
+                    <div class="admin-card" onclick="showManagerView('orderManager')">
+                        <div class="admin-card-icon">📋</div>
+                        <div class="admin-card-title">Quản lý Đơn Hàng</div>
                     </div>
-                </details>
-            </div>
-
-            <div id="storeHoursManager" class="management-section store-hours-manager disabled">
-                 <details>
-                    <summary>Quản lý GIỜ HOẠT ĐỘNG</summary>
-                    <div class="details-content">
-						<div id="storeHoursAlert" class="admin-alert"></div>
-						
-						<div class="hours-section">
-							<h4 style="margin: 0 0 10px 0; color: #333;">1. Giờ hoạt động THÔNG THƯỜNG</h4>
-							<div id="normalHoursList">
-								</div>
-						</div>
-						
-						<div class="hours-section" style="margin-top: 15px;">
-							<h4 style="margin: 0 0 10px 0; color: #333;">2. Chọn ngày TẠM NGHỈ</h4>
-							<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-								<div>
-									<label style="font-size: 12px; font-weight: 600; color: #333;">Từ ngày:</label>
-									<input type="date" id="breakStartDate" class="form-input" style="padding: 6px; margin-top: 3px;">
-								</div>
-								<div>
-									<label style="font-size: 12px; font-weight: 600; color: #333;">Đến ngày:</label>
-									<input type="date" id="breakEndDate" class="form-input" style="padding: 6px; margin-top: 3px;">
-								</div>
-							</div>
-							<input type="text" id="breakReason" class="form-input" placeholder="Lý do tạm nghỉ " style="margin-bottom: 8px; padding: 6px;">
-							<button style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; width: 100%;" onclick="addBreakPeriod()">+ Thêm Lịch Nghỉ</button>
-							
-							<div id="currentBreaks" style="margin-top: 15px; max-height: 15vh; overflow-y: auto;">
-								</div>
-						</div>
-						
-						<div style="margin-top: 20px; text-align: center;">
-							<button class="submit-btn" onclick="saveStoreHours()" style="width: 100%; background: #28a745;"> Cập nhật GIỜ HOẠT ĐỘNG </button>
-						</div>
+                    <div class="admin-card" onclick="showManagerView('menuManager')">
+                        <div class="admin-card-icon">📖</div>
+                        <div class="admin-card-title">Quản lý Menu</div>
                     </div>
-                </details>
-            </div>
-            
-            <div class="management-section">
-                <details open>
-                    <summary>Thông tin QUÁN ĂN</summary>
-                    <div class="details-content">
-                        <div class="admin-shop-info-item" id="adminShopOpeningHours"><strong>Giờ mở cửa:</strong> Đang tải...</div>
-                        <div class="admin-shop-info-item"><strong>Địa chỉ:</strong> <span style="color: #02a046; font-weight: 600;">126/0 Lê Lợi, Xã Hóc Môn, Tp.HCM</span></div>
-                        <div class="admin-shop-info-item"><strong>Vị trí:</strong> <a href="https://maps.google.com/?q=126/0+Lê+Lợi,+Hóc+Môn" target="_blank">Xem trên Google Maps</a></div>
-                        <div class="admin-shop-info-item"><strong>Điện thoại:</strong> <a href="tel:0909112233">0909 112 233</a></div>
-                        <div class="admin-shop-info-item"><strong>Zalo:</strong> <a href="https://zalo.me/0909112233" target="_blank">Kết bạn Zalo</a></div>
+                    <div class="admin-card" onclick="showManagerView('storeHoursManager')">
+                        <div class="admin-card-icon">⏰</div>
+                        <div class="admin-card-title">Giờ Hoạt Động</div>
                     </div>
-                </details>
+                    <div class="admin-card" onclick="changePassword()">
+                        <div class="admin-card-icon">🔑</div>
+                        <div class="admin-card-title">Đổi Mật Khẩu</div>
+                    </div>
+                </div>
+    
+                <div id="managementViews">
+                    <div id="orderManager" class="management-view">
+                        <button class="back-to-grid-btn" onclick="showAdminGrid()">← Quay lại</button>
+                        <div class="management-section">
+                            <details open>
+                                <summary>Quản lý ĐƠN HÀNG</summary>
+                                <div class="details-content">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <div id="orderAlert" class="admin-alert info">Đang chờ tải đơn hàng...</div>
+                                        <button style="background: #e8f5e9; color: #02a046; border: 1px solid #a5d6a7; border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px;" onclick="fetchPendingOrders()">Tải lại</button>
+                                    </div>
+                                    <div id="adminOrderList" style="max-height: 55vh; overflow-y: auto; padding-right: 5px;"></div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+        
+                    <div id="menuManager" class="management-view">
+                        <button class="back-to-grid-btn" onclick="showAdminGrid()">← Quay lại</button>
+                        <div class="management-section">
+                             <details open>
+                                <summary>Quản lý MENU</summary>
+                                <div class="details-content">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <input type="search" id="menuSearch" placeholder="Tìm món..." style="width: calc(100% - 100px); padding: 8px 10px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" oninput="renderAdminMenuList()" />
+                                        <button style="background: #e8f5e9; color: #02a046; border: 1px solid #a5d6a7; border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px;" onclick="fetchAdminMenu()">Tải lại</button>
+                                    </div>
+                                    <div id="loadAlert" class="admin-alert"></div>
+                                    <div id="adminMenuList" style="max-height: 50vh; overflow-y: auto;"></div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+        
+                    <div id="storeHoursManager" class="management-view">
+                        <button class="back-to-grid-btn" onclick="showAdminGrid()">← Quay lại</button>
+                        <div class="management-section">
+                             <details open>
+                                <summary>Quản lý GIỜ HOẠT ĐỘNG</summary>
+                                <div class="details-content">
+                                    <div id="storeHoursAlert" class="admin-alert"></div>
+                                    <div class="hours-section">
+                                        <h4 style="margin: 0 0 10px 0; color: #333;">1. Giờ hoạt động THÔNG THƯỜNG</h4>
+                                        <div id="normalHoursList"></div>
+                                    </div>
+                                    <div class="hours-section" style="margin-top: 15px;">
+                                        <h4 style="margin: 0 0 10px 0; color: #333;">2. Chọn ngày TẠM NGHỈ</h4>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                                            <div>
+                                                <label style="font-size: 12px; font-weight: 600; color: #333;">Từ ngày:</label>
+                                                <input type="date" id="breakStartDate" class="form-input" style="padding: 6px; margin-top: 3px;">
+                                            </div>
+                                            <div>
+                                                <label style="font-size: 12px; font-weight: 600; color: #333;">Đến ngày:</label>
+                                                <input type="date" id="breakEndDate" class="form-input" style="padding: 6px; margin-top: 3px;">
+                                            </div>
+                                        </div>
+                                        <input type="text" id="breakReason" class="form-input" placeholder="Lý do tạm nghỉ " style="margin-bottom: 8px; padding: 6px;">
+                                        <button style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; width: 100%;" onclick="addBreakPeriod()">+ Thêm Lịch Nghỉ</button>
+                                        <div id="currentBreaks" style="margin-top: 15px; max-height: 15vh; overflow-y: auto;"></div>
+                                    </div>
+                                    <div style="margin-top: 20px; text-align: center;">
+                                        <button class="submit-btn" onclick="saveStoreHours()" style="width: 100%; background: #28a745;"> Cập nhật GIỜ HOẠT ĐỘNG </button>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
+        </div>
     </div>
-</div>
 
 <div class="custom-alert" id="customAlert">
     <div class="custom-alert-content">
@@ -1799,41 +1716,54 @@
         </div>
     </div>
 </div>
-    
-    
+
+<div class="password-prompt" id="passwordPrompt">
+    <div class="password-prompt-content">
+        <div class="password-prompt-title">Yêu cầu xác thực</div>
+        <div class="password-prompt-subtitle">Vui lòng nhập mật khẩu quản lý</div>
+        <div class="password-inputs" id="passwordInputs">
+            <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="password-digit">
+            <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="password-digit">
+            <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="password-digit">
+            <input type="number" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="password-digit">
+        </div>
+        <button class="password-close-btn" onclick="closePasswordPrompt()">Hủy</button>
+    </div>
 </div>
 
-
     <script>
-        // Thay YOUR_SCRIPT_URL bằng URL thực tế của Google Apps Script
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxMT0qQMyX-fbS46uD_IGjne6uBXnJduU5YlsFHZ5_cmSWSJefHUQOQVz6M1srRvIwA/exec';
-        // URL Google Apps Script cho menu (thay bằng URL thực tế của bạn)
-const MENU_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWxE4-rraRyQssxtkB8vxqakB1JH_TZBY-U4D48bHXIMXkcSphnJZq9wdNqXMFiTUqQg/exec';
-// Thêm đoạn code này ngay sau dòng MENU_SCRIPT_URL
-const PRODUCT_IMAGES = {
-    'Hủ tíu Chay': 'https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg',
-    'Bún bò Chay': 'https://i.postimg.cc/13Kr5615/Bun-Bo-sua.png', 
-    'Bún riêu Chay': 'https://i.postimg.cc/YSnNQHS5/Bun-Rieu-Chay.jpg',
-    'Bánh canh Chay': 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300',
-    'Bánh canh Chay': 'https://i.postimg.cc/fW5TH5NH/Banh-Canh-Chay.jpg',
-    'Bún Thái Chay': 'https://i.postimg.cc/JnsNq2DG/buthai.jpg',
-    'Bún xào Chay': 'https://i.postimg.cc/rpFCdmqG/Bun-Xao-Chay.jpg',
-    'Bún măng Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
-    'Hoành thánh Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
-    'Bún mắm Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
-    'Mì Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
-    'Nước Sâm': 'https://i.postimg.cc/ZYyPvXzQ/NuocSam.jpg',
-    'Nước Tía Tô': 'https://i.postimg.cc/yY4mmnV8/tiato.jpg', 
-    'Sương Sa Hạt É': 'https://i.postimg.cc/x8HKrNPQ/SuongSa.jpg',
-    'Nước Suối': 'https://i.postimg.cc/fR3t7jnb/1.jpg'  // Thêm món mới
-};
-let menuData = [];
+	
+        const SCRIPT_URLS = {
+            orders: 'https://script.google.com/macros/s/AKfycbydXimgEdx-FZGYwVIDAFTBxfSKH4UpQOs4WT-aVU2NFiPnQNq4WFJISPHN8fM8HpPK8w/exec',
+            menu: 'https://script.google.com/macros/s/AKfycbzIlA3lho8TgEeKeiZWLJPsc1kkmyRxSgNoNQTTQD-S8wyRJEffBp8X0PnM66I5f85UwA/exec',
+            storeHours: 'https://script.google.com/macros/s/AKfycbyrHVX8PfGNgblZh6NfTbyOo2dRTdOhVyC_PMmZXS5MvuxyunC7FyqSs8qWcR5kL1VG/exec'
+        };
+
+        const GOOGLE_SCRIPT_URL = SCRIPT_URLS.orders;
+        const MENU_SCRIPT_URL = SCRIPT_URLS.menu;
+        
+        const PRODUCT_IMAGES = {
+            'Hủ tíu Chay': 'https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg',
+            'Bún bò Chay': 'https://i.postimg.cc/13Kr5615/Bun-Bo-sua.png', 
+            'Bún riêu Chay': 'https://i.postimg.cc/YSnNQHS5/Bun-Rieu-Chay.jpg',
+            'Bánh canh Chay': 'https://i.postimg.cc/fW5TH5NH/Banh-Canh-Chay.jpg',
+            'Bún Thái Chay': 'https://i.postimg.cc/JnsNq2DG/buthai.jpg',
+            'Bún xào Chay': 'https://i.postimg.cc/rpFCdmqG/Bun-Xao-Chay.jpg',
+            'Bún măng Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
+            'Hoành thánh Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
+            'Bún mắm Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
+            'Mì Chay': 'https://i.postimg.cc/fR3t7jnb/1.jpg',
+            'Nước Sâm': 'https://i.postimg.cc/ZYyPvXzQ/NuocSam.jpg',
+            'Nước Tía Tô': 'https://i.postimg.cc/yY4mmnV8/tiato.jpg', 
+            'Sương Sa Hạt É': 'https://i.postimg.cc/x8HKrNPQ/SuongSa.jpg',
+            'Nước Suối': 'https://i.postimg.cc/fR3t7jnb/1.jpg'
+        };
+        let menuData = [];
         let cartCount = 0;
         let cartItems = [];
         let cartTotal = 0;
-        let isStoreOpen = false; // Mặc định là đóng cửa để khóa nút, chờ xác minh
+        let isStoreOpen = false; 
         
-        // Validation functions
         function validateName() {
             const nameInput = document.getElementById('customerName');
             const nameError = document.getElementById('nameError');
@@ -1852,7 +1782,6 @@ let menuData = [];
             const phoneInput = document.getElementById('customerPhone');
             const phoneError = document.getElementById('phoneError');
             const phone = phoneInput.value.trim();
-            // Vietnamese mobile phone number patterns
             const vnMobilePattern = /^(0[35789])[0-9]{8}$/;
             if (!vnMobilePattern.test(phone)) {
                 phoneInput.classList.add('error');
@@ -1866,23 +1795,21 @@ let menuData = [];
         }
 		
 		function validateAddress() {
-  const addressInput = document.getElementById('address');
-  const addressError = document.getElementById('addressError');
-  const value = (addressInput.value || '').trim();
+          const addressInput = document.getElementById('address');
+          const addressError = document.getElementById('addressError');
+          const value = (addressInput.value || '').trim();
 
-  if (value.length < 10) {
-    addressInput.classList.add('error');
-    // (tuỳ chọn) bổ sung thông báo dài hơn:
-    // addressError.textContent = 'Vui lòng nhập: Số nhà, Tên đường, Ấp/Khu phố ';
-    addressError.style.display = 'block';
-    return false;
-  } else {
-    addressInput.classList.remove('error');
-    addressError.style.display = 'none';
-    return true;
-  }
-}
-        // Add event listeners for real-time validation
+          if (value.length < 10) {
+            addressInput.classList.add('error');
+            addressError.style.display = 'block';
+            return false;
+          } else {
+            addressInput.classList.remove('error');
+            addressError.style.display = 'none';
+            return true;
+          }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const nameInput = document.getElementById('customerName');
             const phoneInput = document.getElementById('customerPhone');
@@ -1895,62 +1822,38 @@ let menuData = [];
                 phoneInput.addEventListener('input', validatePhone);
                 phoneInput.addEventListener('blur', validatePhone);
             }
-if (addressInput) {                                     // ➜ thêm cả block này
-    addressInput.addEventListener('input', validateAddress);
-    addressInput.addEventListener('blur', validateAddress);
-  }
-});		
+            if (addressInput) {
+                addressInput.addEventListener('input', validateAddress);
+                addressInput.addEventListener('blur', validateAddress);
+            }
+        });		
 		
        
    function showCategory(category, button) {
-    // Xóa active từ tất cả tabs
-    document.querySelectorAll('.category-tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    // Thêm active cho tab được click
-    button.classList.add('active');
-    // Lọc sản phẩm
-    document.querySelectorAll('.product-card').forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        const cardStatus = card.getAttribute('data-status');
-        if (category === 'all') {
-            // Hiển thị tất cả sản phẩm
-            card.style.display = 'block';
-        }
-        else if (category === 'special') {
-            // Chỉ hiển thị sản phẩm hết hàng
-            if (cardStatus === 'Hết hàng') {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        button.classList.add('active');
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardStatus = card.getAttribute('data-status');
+
+            let shouldShow = false;
+            if (category === 'all') {
+                shouldShow = true;
+            } else if (category === 'hot' && cardCategory === 'Món ăn') {
+                shouldShow = true;
+            } else if (category === 'ready' && cardCategory === 'Nước uống') {
+                shouldShow = true;
+            } else if (category === 'special' && cardStatus === 'Hết hàng') {
+                shouldShow = true;
             }
-        }
-        else if (category === 'hot') {
-            // Hiển thị tất cả sản phẩm thuộc danh mục món ăn (bao gồm cả hết hàng)
-            if (cardCategory === 'Món ăn') {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        }
-        else if (category === 'ready') {
-            // Hiển thị tất cả sản phẩm thuộc danh mục nước uống (bao gồm cả hết hàng)
-            if (cardCategory === 'Nước uống') {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        }
-        else {
-            // Hiển thị theo category cụ thể VÀ KHÔNG bị hết hàng
-            if (cardCategory === category && cardStatus !== 'Hết hàng') {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        }
-    });
-}
+            
+            card.style.display = shouldShow ? 'block' : 'none';
+        });
+    }
+
         function addToCart(productName, price, button) {
             const productControls = button.parentElement;
             const addBtn = productControls.querySelector('.add-btn');
@@ -2006,7 +1909,11 @@ if (addressInput) {                                     // ➜ thêm cả block 
             }
         }
         function updateCartDisplay() {
-            document.getElementById('cartBadge').textContent = cartCount;
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                cartBadge.textContent = cartCount;
+            }
+            
             if (cartCount > 0) {
                 document.getElementById('cartSummary').classList.add('show');
                 document.getElementById('cartItemsCount').textContent = cartCount + ' món';
@@ -2016,59 +1923,61 @@ if (addressInput) {                                     // ➜ thêm cả block 
             }
         }
         function showCart() {
-    if (cartItems.length === 0) {
-        alert('Giỏ hàng trống!');
-        return;
-    }
-    document.getElementById('orderForm').classList.remove('show');
-    document.getElementById('onlineOrderBtn').style.display = 'block';
-    updateCartModal();
-    document.getElementById('cartModal').classList.add('show');
-    document.body.style.overflow = 'hidden';
-}
+            if (cartItems.length === 0) {
+                alert('Giỏ hàng trống!');
+                return;
+            }
+            document.getElementById('orderForm').classList.remove('show');
+            document.getElementById('onlineOrderBtn').style.display = 'block';
+            updateCartModal();
+            document.getElementById('cartModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
         function closeCart() {
-    document.getElementById('cartModal').classList.remove('show');
-    document.getElementById('orderForm').classList.remove('show');
-    document.getElementById('onlineOrderBtn').style.display = 'block';
-    document.body.style.overflow = 'auto';
-}
+            document.getElementById('cartModal').classList.remove('show');
+            document.getElementById('orderForm').classList.remove('show');
+            document.getElementById('onlineOrderBtn').style.display = 'block';
+            document.body.style.overflow = 'auto';
+        }
         function backToMenu() {
             closeCart();
         }
-      function updateCartModal() {
-    const modalBody = document.getElementById('cartModalBody');
-    const modalTotalPrice = document.getElementById('modalTotalPrice');
-    if (cartItems.length === 0) {
-        modalBody.innerHTML = '<div class="empty-cart">Giỏ hàng trống</div>';
-        modalTotalPrice.textContent = '0 ';
-        return;
-    }
-    let modalHTML = '';
-    cartItems.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        modalHTML += `
-    <div class="cart-item">
-        <div class="cart-item-left">
-            <div class="cart-item-image">
-                <img src="${PRODUCT_IMAGES[item.name] || 'https://via.placeholder.com/50x50/02a046/ffffff?text=🥟'}" 
-                     alt="${item.name}"
-                     style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-                     onerror="this.outerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:24px;\\'>🥟</div>'">
-            </div>
-                    <div class="cart-item-info">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">${item.price.toLocaleString('vi-VN')} </div>
+        function updateCartModal() {
+            const modalBody = document.getElementById('cartModalBody');
+            const modalTotalPrice = document.getElementById('modalTotalPrice');
+            if (cartItems.length === 0) {
+                modalBody.innerHTML = '<div class="empty-cart">Giỏ hàng trống</div>';
+                modalTotalPrice.textContent = '0 ';
+                document.getElementById('orderButtons').style.display = 'none';
+                return;
+            }
+            document.getElementById('orderButtons').style.display = 'flex';
+            let modalHTML = '';
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                modalHTML += `
+            <div class="cart-item">
+                <div class="cart-item-left">
+                    <div class="cart-item-image">
+                        <img src="${PRODUCT_IMAGES[item.name] || 'https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg'}" 
+                             alt="${item.name}"
+                             style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
+                             onerror="this.src='https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg';">
                     </div>
-                </div>
-                <div class="cart-item-amount">${itemTotal.toLocaleString('vi-VN')} </div>
-                <div class="cart-item-controls">
-                    <button class="modal-quantity-btn" onclick="decreaseQuantityInModal(${index})">-</button>
-                    <span class="modal-quantity-display">${item.quantity}</span>
-                    <button class="modal-quantity-btn increase" onclick="increaseQuantityInModal(${index})">+</button>
-                </div>
-            </div>
-        `;
-    });
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">${item.price.toLocaleString('vi-VN')} </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-amount">${itemTotal.toLocaleString('vi-VN')} </div>
+                        <div class="cart-item-controls">
+                            <button class="modal-quantity-btn" onclick="decreaseQuantityInModal(${index})">-</button>
+                            <span class="modal-quantity-display">${item.quantity}</span>
+                            <button class="modal-quantity-btn increase" onclick="increaseQuantityInModal(${index})">+</button>
+                        </div>
+                    </div>
+                `;
+            });
             modalBody.innerHTML = modalHTML;
             modalTotalPrice.textContent = cartTotal.toLocaleString('vi-VN') ;
         }
@@ -2090,6 +1999,7 @@ if (addressInput) {                                     // ➜ thêm cả block 
                 resetProductCard(item.name);
                 if (cartItems.length === 0) {
                     closeCart();
+                    updateCartModal(); // Update to show empty state
                     return;
                 }
             } else {
@@ -2102,7 +2012,7 @@ if (addressInput) {                                     // ➜ thêm cả block 
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach(card => {
                 const nameElement = card.querySelector('.product-name');
-                if (nameElement.textContent === productName) {
+                if (nameElement && nameElement.textContent === productName) {
                     const quantityDisplay = card.querySelector('.quantity-display');
                     if (quantityDisplay) {
                         quantityDisplay.textContent = quantity;
@@ -2114,7 +2024,7 @@ if (addressInput) {                                     // ➜ thêm cả block 
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach(card => {
                 const nameElement = card.querySelector('.product-name');
-                if (nameElement.textContent === productName) {
+                if (nameElement && nameElement.textContent === productName) {
                     const addBtn = card.querySelector('.add-btn');
                     const quantityControls = card.querySelector('.quantity-controls');
                     addBtn.style.display = 'flex';
@@ -2123,101 +2033,78 @@ if (addressInput) {                                     // ➜ thêm cả block 
             });
         }
         function showOrderForm() {
-    document.getElementById('orderForm').classList.add('show');
-    document.getElementById('onlineOrderBtn').style.display = 'none';
-}
-        function orderViaZalo() {
-            if (cartItems.length === 0) {
-                alert('Giỏ hàng trống!');
-                return;
-            }
+            document.getElementById('orderForm').classList.add('show');
             document.getElementById('onlineOrderBtn').style.display = 'none';
-            let zaloMessage = `🛒 MÓN ĂN ĐÃ ĐẶT\n\n`;
-            zaloMessage += `👤 Quý Khách hàng: [Nhập tên của bạn]\n`;
-            zaloMessage += `📞 Số điện thoại: [Nhập số điện thoại]\n`;
-            zaloMessage += `📍 Địa chỉ nhận hàng: [Địa chỉ chi tiết], [Phường/Xã], Tp.Hồ Chí Minh\n\n`;
-            zaloMessage += `📋 CHI TIẾT CÁC MÓN:\n`;
-            cartItems.forEach((item, index) => {
-                zaloMessage += `Món ${index + 1} - ${item.name} - SL: ${item.quantity} - Đơn giá: ${item.price.toLocaleString('vi-VN')}  - Thành tiền: ${(item.price * item.quantity).toLocaleString('vi-VN')} \n`;
-            });
-            zaloMessage += `\n💰 TỔNG CỘNG: ${cartTotal.toLocaleString('vi-VN')} \n\n`;
-            zaloMessage += `Vui lòng xác nhận đơn hàng giúp tôi. Cảm ơn!`;
-            const zaloUrl = `https://zalo.me/0909112233?text=${encodeURIComponent(zaloMessage)}`;
-            window.open(zaloUrl, '_blank');   // mở Zalo ở tab/app mới
- // đóng popup để về màn chính
         }
-        function openMap() {
-            alert('Tính năng ghim vị trí trên bản đồ sẽ được cập nhật sau!');
-        }
+
         async function submitOrder(event) {
             event.preventDefault();
             if (cartItems.length === 0) {
                 alert('Giỏ hàng trống!');
                 return;
             }
-            // Validate form
             const isNameValid = validateName();
-const isPhoneValid = validatePhone();
-const isAddressValid = validateAddress();
+            const isPhoneValid = validatePhone();
+            const isAddressValid = validateAddress();
 
-if (!isNameValid || !isPhoneValid || !isAddressValid) {
-  alert('Vui lòng kiểm tra lại thông tin đã nhập!');
-  return;
-}
+            if (!isNameValid || !isPhoneValid || !isAddressValid) {
+              alert('Vui lòng kiểm tra lại thông tin đã nhập!');
+              return;
+            }
            const formData = new FormData(event.target);
-const customerName = formData.get('customerName');
-const customerPhone = formData.get('customerPhone');
-const ward = formData.get('ward');
-const address = formData.get('address');
-const note = formData.get('note');
-const fullAddress = `${address}, ${ward}, Tp.HCM`;
-// XÓA dòng này:
-// const fullAddress = `${address}, ${ward}, Tp.HCM`;
-const orderData = {
-    customerName: customerName,
-    customerPhone: customerPhone,
-    address: address,        // Giữ nguyên address riêng
-    ward: ward,             // Giữ nguyên ward riêng
-    note: note,
-    items: cartItems,
-    total: cartTotal,
-    timestamp: new Date().toISOString()
-};
-// Tạo chi tiết đơn hàng để hiển thị
-let orderDetails = `📋 ĐƠN HÀNG ĐANG ĐẶT\n\n`;
-orderDetails += `👤 Quý khách hàng: ${customerName}\n`;
-orderDetails += `📞 Số điện thoại: ${customerPhone}\n`;
-orderDetails += `📍 Địa chỉ: ${address}, ${ward}, Tp.HCM\n`;
-orderDetails += `🕘 Thời gian đặt: ${new Date().toLocaleString('vi-VN')}\n`;
-if (note) {
-    orderDetails += `📝 Ghi chú: ${note}\n`;
-}
-orderDetails += `\n📋 Chi tiết các món:\n`;
-orderDetails += `------------------------------------------------------------------\n`;
-cartItems.forEach((item, index) => {
-    const itemTotal = item.price * item.quantity;
-    orderDetails += `${index + 1}. ${item.name}: ${item.quantity} x ${item.price.toLocaleString('vi-VN')}đ = ${itemTotal.toLocaleString('vi-VN')}đ\n`;
-});
-orderDetails += `------------------------------------------------------------------\n`;
-orderDetails += `\n💰 TỔNG SỐ TIỀN: <span style="color: #02a046; font-weight: bold;">${cartTotal.toLocaleString('vi-VN')}</span>\n`;
-orderDetails += `🚚 Thời gian giao: 10-20 phút (tùy khu vực)\n\n`;
-orderDetails += `📞 Chúng tôi sẽ liên hệ xác nhận trong ít phút!\n`;
-orderDetails += `Quý khách vui lòng để ý điện thoại. Cảm ơn !`;
-// Hiển thị popup ngay lập tức
-showCustomAlert('ĐẶT HÀNG THÀNH CÔNG !', orderDetails);
-// Ghi dữ liệu ngầm (không chờ kết quả)
-fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(orderData)
-}).catch(error => {
-    console.error('Lỗi gửi đơn hàng ngầm:', error);
-});
+           const customerName = formData.get('customerName');
+           const customerPhone = formData.get('customerPhone');
+           const ward = formData.get('ward');
+           const streetAddress = formData.get('address'); 
+           const note = formData.get('note');
+            const fullAddress = `${streetAddress}, ${ward}, Tp.HCM`;
+
+            const orderData = {
+                action: 'submitOrder',
+                customerName: customerName,
+                customerPhone: customerPhone,
+                address: fullAddress,
+                note: note,
+                items: cartItems,
+                total: cartTotal,
+                timestamp: new Date().toISOString()
+            };
+
+            let orderDetails = `📋 ĐƠN HÀNG ĐANG ĐẶT\n\n`;
+            orderDetails += `👤 Quý khách hàng: ${customerName}\n`;
+            orderDetails += `📞 Số điện thoại: ${customerPhone}\n`;
+            orderDetails += `📍 Địa chỉ: ${fullAddress}\n`;
+            orderDetails += `🕘 Thời gian đặt: ${new Date().toLocaleString('vi-VN')}\n`;
+            if (note) {
+                orderDetails += `📝 Ghi chú: ${note}\n`;
+            }
+            orderDetails += `\n📋 Chi tiết các món:\n`;
+            orderDetails += `------------------------------------------------------------------\n`;
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                orderDetails += `${index + 1}. ${item.name}: ${item.quantity} x ${item.price.toLocaleString('vi-VN')} = ${itemTotal.toLocaleString('vi-VN')}\n`;
+            });
+            orderDetails += `------------------------------------------------------------------\n`;
+            orderDetails += `\n💰 TỔNG SỐ TIỀN: <span style="color: #02a046; font-weight: bold;">${cartTotal.toLocaleString('vi-VN')}</span>\n`;
+            orderDetails += `🚚 Thời gian giao: 10-20 phút (tùy khu vực)\n\n`;
+            orderDetails += `📞 Chúng tôi sẽ liên hệ xác nhận trong ít phút!\n`;
+            orderDetails += `Quý khách vui lòng để ý điện thoại. Cảm ơn !`;
+
+            showCustomAlert('ĐẶT HÀNG THÀNH CÔNG !', orderDetails);
+
+            fetch(SCRIPT_URLS.orders, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData)
+            }).catch(error => {
+                console.error('Lỗi gửi đơn hàng ngầm:', error);
+            });
         }
-	async function loadMenuFromSheets() {
+        
+	    async function loadMenuFromSheets() {
             try {
                 const response = await fetch(MENU_SCRIPT_URL + '?action=getMenu');
                 if (!response.ok) throw new Error('Network response was not ok');
@@ -2226,124 +2113,66 @@ fetch(GOOGLE_SCRIPT_URL, {
                 showCategory('all', document.querySelector('.category-tab.active'));
             } catch (error) {
                 console.error('Lỗi load menu:', error);
-                // Nếu lỗi, dùng menu cũ (fallback)
-                console.log('Sử dụng menu mặc định');
+                document.getElementById('productsGrid').innerHTML = '<p style="text-align:center; color: red;">Không thể tải thực đơn. Vui lòng thử lại sau.</p>'
             }
         }
-        // BƯỚC 1: Sửa hàm generateMenuHTML()
-// Thay thế hàm cũ bằng hàm mới này:
-function generateMenuHTML() {
-    const productsGrid = document.getElementById('productsGrid');
-    if (!menuData || menuData.length === 0) return;
-    
-    let html = '';
-    menuData.forEach(item => {
-        const labelClass = getLabelClass(item.category);
-        const isOutOfStock = item.status === 'Hết hàng';
-        const disabledClass = isOutOfStock ? ' disabled' : '';
         
-        // Ưu tiên: 1) Link từ PRODUCT_IMAGES, 2) Link từ Sheets, 3) Emoji mặc định
-        const productImage = PRODUCT_IMAGES[item.name] || item.image || null;
-        
-        let imageContent;
-        if (productImage && productImage.trim()) {
-            imageContent = `
-                <img src="${productImage}" 
-                     alt="${item.name}"
-                     style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
-                     loading="lazy"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="image-fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center;">
-    <img src="https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Placeholder">
-</div>
-            `;
-        } else {
-            imageContent = '<img src="https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Loading...">';
-        }
-        
-        html += `
-            <div class="product-card${disabledClass}" data-category="${item.category}" data-status="${item.status}">
-                <div class="product-image ${labelClass}">${imageContent}</div>
-                <div class="product-info">
-                    <div class="product-name">${item.name}</div>
-                    <div class="product-footer">
-                        <div class="product-price">${parseInt(item.price).toLocaleString('vi-VN')}</div>
-                        <div class="product-controls">
-                            ${isOutOfStock ?
-                                '<button class="add-btn disabled" disabled>Hết hàng</button>' :
-                                `<button class="add-btn" onclick="addToCart('${item.name}', ${item.price}, this)">+</button>`
-                            }
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('${item.name}', this)">-</button>
-                                <span class="quantity-display">1</span>
-                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('${item.name}', ${item.price}, this)">+</button>
+        function generateMenuHTML() {
+            const productsGrid = document.getElementById('productsGrid');
+            if (!productsGrid) return;
+            if (!menuData || menuData.length === 0) {
+                 productsGrid.innerHTML = '<p style="text-align:center;">Không có sản phẩm nào.</p>';
+                 return;
+            }
+            
+            let html = '';
+            menuData.forEach(item => {
+                const isOutOfStock = item.status === 'Hết hàng';
+                const disabledClass = isOutOfStock ? ' disabled' : '';
+                const categoryName = item.category || 'Món ăn';
+                
+                const productImage = PRODUCT_IMAGES[item.name] || item.image || 'https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg';
+                
+                let imageContent = `
+                    <img src="${productImage}" 
+                         alt="${item.name}"
+                         style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"
+                         loading="lazy"
+                         onerror="this.src='https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg';">
+                `;
+                
+                html += `
+                    <div class="product-card${disabledClass}" data-category="${categoryName}" data-status="${item.status}">
+                        <div class="product-image">${imageContent}</div>
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
+                            <div class="product-footer">
+                                <div class="product-price">${parseInt(item.price).toLocaleString('vi-VN')}</div>
+                                <div class="product-controls">
+                                    ${isOutOfStock ?
+                                        '<button class="add-btn disabled" disabled>Hết hàng</button>' :
+                                        `<button class="add-btn" onclick="addToCart('${item.name}', ${item.price}, this)">+</button>`
+                                    }
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="decreaseQuantityOnCard('${item.name}', this)">-</button>
+                                        <span class="quantity-display">1</span>
+                                        <button class="quantity-btn increase" onclick="increaseQuantityOnCard('${item.name}', ${item.price}, this)">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
-    });
-    productsGrid.innerHTML = html;
-}
-// BƯỚC 2: Cập nhật hàm getLabelClass()
-// Thay thế hàm cũ bằng hàm mới này:
-function getLabelClass(category) {
-    switch(category) {
-        case 'hot': return 'hot-label';
-        case 'ready': return 'popular-label';
-        case 'special': return 'special-label';
-        default: return 'hot-label';
-    }
-}
-// BƯỚC 3: Thêm CSS cho sản phẩm hết hàng
-// Thêm đoạn CSS này vào phần <style> trong file HTML:
-/*
-.product-card.disabled {
-    opacity: 0.6;
-    position: relative;
-}
-.product-card.disabled::after {
-    content: 'HẾT HÀNG';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(220, 53, 69, 0.9);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 10;
-}
-.add-btn.disabled {
-    background: #dc3545;
-    cursor: not-allowed;
-    font-size: 12px;
-    width: auto;
-    padding: 4px 8px;
-}
-.add-btn.disabled:hover {
-    background: #dc3545;
-    transform: none;
-}
-*/
-       function getLabelClass(category) {
-    switch(category) {
-        case 'hot': return 'hot-label';
-        case 'ready': return 'popular-label';
-        case 'special': return 'special-label';
-        default: return '';  // Không có label nếu không khớp category
-    }
-}
+                `;
+            });
+            productsGrid.innerHTML = html;
+        }
+
         function resetCart() {
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
+            document.querySelectorAll('.product-card').forEach(card => {
                 const addBtn = card.querySelector('.add-btn');
                 const quantityControls = card.querySelector('.quantity-controls');
-                addBtn.style.display = 'flex';
-                quantityControls.classList.remove('show');
+                if (addBtn) addBtn.style.display = 'flex';
+                if (quantityControls) quantityControls.classList.remove('show');
             });
             cartItems = [];
             cartCount = 0;
@@ -2351,55 +2180,46 @@ function getLabelClass(category) {
             updateCartDisplay();
             closeCart();
         }
-        // Close modal when clicking outside
+
         document.getElementById('cartModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeCart();
             }
         });
-        // Initialize - show all products by default
+
         document.addEventListener('DOMContentLoaded', function() {
-    loadMenuFromSheets(); // Thêm dòng này
-    showCategory('all', document.querySelector('.category-tab.active'));
-});
-        document.addEventListener('DOMContentLoaded', function () {
-    const nameInput = document.getElementById('customerName');
-    if (nameInput) {
-        nameInput.addEventListener('input', function () {
-            this.value = this.value.toUpperCase();
+            loadMenuFromSheets();
+            const nameInput = document.getElementById('customerName');
+            if (nameInput) {
+                nameInput.addEventListener('input', function () {
+                    this.value = this.value.toUpperCase();
+                });
+            }
         });
-    }
-});
-  // --- Định dạng địa chỉ (blur) ---
-  const commonWords = ["tran","van","le","nguyen","thi","hoa","binh","phuc","tinh","chinh","minh"];
-  function toTitleCase(str) {
-    return str.replace(/\w\S*/g, txt =>
-      txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    );
-  }
- function smartFormatAddress(input) {
-  if (!input.trim()) return "";
-  let text = input.trim().replace(/\s+/g, " ").toLowerCase();
-  // Viết hoa chữ cái đầu mỗi từ (bao gồm cả ký tự có dấu)
-  return text.replace(/(^|\s)(.)/g, function(match, space, char) {
-    return space + char.toUpperCase();
-  });
-}
-  const inputEl = document.getElementById("address");
-  inputEl.addEventListener("blur", () => {
-    const formatted = smartFormatAddress(inputEl.value);
-    if (formatted) inputEl.value = formatted; // ghi trực tiếp vào ô nhập
-  });
+
+        function smartFormatAddress(input) {
+            if (!input.trim()) return "";
+            let text = input.trim().replace(/\s+/g, " ").toLowerCase();
+            return text.replace(/(^|\s)(.)/g, (match, space, char) => space + char.toUpperCase());
+        }
+
+        const inputEl = document.getElementById("address");
+        if(inputEl) {
+            inputEl.addEventListener("blur", () => {
+                const formatted = smartFormatAddress(inputEl.value);
+                if (formatted) inputEl.value = formatted;
+            });
+        }
   
-  // Khai báo biến global trước
-let currentOrderDetails = '';
-let adminMenuData = [];
-let passwordCheckTimeout = null;
-const ADMIN_CONFIG = {
-    MENU_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzIlA3lho8TgEeKeiZWLJPsc1kkmyRxSgNoNQTTQD-S8wyRJEffBp8X0PnM66I5f85UwA/exec",
-    ADMIN_PASS: "0000",
-    FETCH_TIMEOUT_MS: 30000
-};
+        let currentOrderDetails = '';
+        let adminMenuData = [];
+        const ADMIN_CONFIG = {
+            MENU_SCRIPT_URL: SCRIPT_URLS.menu,
+            ADMIN_PASS: "0000",
+            FETCH_TIMEOUT_MS: 30000
+        };
+
+let afterPasswordSuccessCallback = null;
 
 function showCustomAlert(title, message) {
     currentOrderDetails = message;
@@ -2413,18 +2233,15 @@ function closeCustomAlert() {
     popup.classList.remove('show');
     document.body.style.overflow = 'auto';
     
-    // Chỉ reset cart nếu đây là popup đặt hàng thành công
     if (currentOrderDetails) {
         resetCart();
         currentOrderDetails = '';
     }
 }
 function confirmZaloOrder() {
-    const autoZaloMessage = `🛒 ĐƠN HÀNG MỚI TỪ WEBSITE\n\n${currentOrderDetails}`;
+    const autoZaloMessage = `🛒 ĐƠN HÀNG MỚI TỪ WEBSITE\n\n${currentOrderDetails.replace(/<[^>]*>/g, '')}`;
     const zaloUrl = `https://zalo.me/0909112233?text=${encodeURIComponent(autoZaloMessage)}`;
-    window.location.href = zaloUrl;
-// Không đóng popup ngay, để user có thể quay lại
-// closeCustomAlert(); // Bỏ dòng này
+    window.open(zaloUrl, '_blank');
 }
 
 let deferredPrompt;
@@ -2436,152 +2253,97 @@ window.addEventListener('beforeinstallprompt', (e) => {
 function addToHomeScreen() {
     if (deferredPrompt) {
         deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('Người dùng đã thêm vào màn hình chính');
-            } else {
-                console.log('Người dùng từ chối thêm vào màn hình chính');
-            }
-            deferredPrompt = null;
-        });
     } else {
-        alert("Vui lòng dùng trình duyệt hỗ trợ (Chrome, Edge, Safari...) để lưu vào màn hình chính.");
+        alert("Để thêm vào màn hình chính, hãy dùng menu của trình duyệt (Chrome, Safari...) và chọn 'Thêm vào màn hình chính'.");
     }
 }
         
-// Function mở Zalo từ navigation (nếu chưa có)
 function openZaloFromNav() {
-    const zaloUrl = 'https://zalo.me/0909112233';
-    window.open(zaloUrl, '_blank');
+    window.open('https://zalo.me/0909112233', '_blank');
 }
 
-// ===== ADMIN FUNCTIONS =====
+// ===== ADMIN FUNCTIONS (REDESIGNED) =====
 function openAdminPopup() {
     document.getElementById('adminPopup').style.display = 'flex';
-    document.getElementById('adminPass').focus();
+    showAdminGrid();
 }
 
 function closeAdminPopup() {
     document.getElementById('adminPopup').style.display = 'none';
-    resetAdminState();
 }
 
-function resetAdminState() {
-    document.getElementById('adminPass').value = '';
-    document.getElementById('menuManager').classList.add('disabled');
-    document.getElementById('storeHoursManager').classList.add('disabled');
-    document.getElementById('menuSearch').value = '';
-    document.getElementById('adminMenuList').innerHTML = 'Hãy đăng nhập để tải MENU';
-    
-    const alertEl = document.getElementById('adminAlerts');
-    showAdminAlert(alertEl, 'info', 'Nhập mật khẩu quản lý để mở khóa các chức năng.');
-    
-    const loadAlert = document.getElementById('loadAlert');
-    loadAlert.classList.remove('show');
-    
-    document.querySelector('.password-input-container').classList.remove('checking');
-    
-    if (passwordCheckTimeout) {
-        clearTimeout(passwordCheckTimeout);
-        passwordCheckTimeout = null;
+function showAdminGrid() {
+    document.getElementById('adminGrid').style.display = 'grid';
+    document.getElementById('managementViews').style.display = 'none';
+    // YÊU CẦU #2: Khi quay lại, mở mục thông tin quán
+    const shopInfo = document.getElementById('adminShopInfoSection');
+    if (shopInfo) {
+        shopInfo.open = true;
     }
-    
-    adminMenuData = [];
-    // *** FIX: REMOVED resetStoreHoursData() call to prevent UI flicker ***
 }
 
-function showAdminAlert(el, type, msg) {
-    el.className = `admin-alert ${type} show`;
-    el.textContent = msg;
-}
+function showManagerView(viewId) {
+    const action = () => {
+        // YÊU CẦU #2: Thu gọn mục thông tin quán khi mở một mục quản lý
+        const shopInfo = document.getElementById('adminShopInfoSection');
+        if (shopInfo) {
+            shopInfo.open = false;
+        }
 
-function checkAdminPass() {
-    const pass = document.getElementById('adminPass').value.trim();
-    const alertEl = document.getElementById('adminAlerts');
-    
-    if (pass === ADMIN_CONFIG.ADMIN_PASS) {
-        document.getElementById('menuManager').classList.remove('disabled');
-        document.getElementById('storeHoursManager').classList.remove('disabled');
-        showAdminAlert(alertEl, 'success', 'Đăng nhập thành công ! ');
-        setTimeout(() => {
-            alertEl.classList.remove('show');
-        }, 2000);
-        fetchAdminMenu();
-        loadStoreHours();
-    } else if (pass) {
-        showAdminAlert(alertEl, 'error', 'Sai mật khẩu! Vui lòng thử lại');
-        document.getElementById('adminPass').value = '';
-        document.getElementById('adminPass').focus();
-    }
+        document.getElementById('adminGrid').style.display = 'none';
+        document.getElementById('managementViews').style.display = 'block';
+
+        document.querySelectorAll('.management-view').forEach(view => {
+            view.style.display = 'none';
+        });
+
+        document.getElementById(viewId).style.display = 'block';
+
+        if (viewId === 'orderManager') fetchPendingOrders();
+        if (viewId === 'menuManager') fetchAdminMenu();
+        if (viewId === 'storeHoursManager') loadStoreHours();
+    };
+
+    promptForAdminPassword(action);
 }
 
 function changePassword() {
-    const currentPass = prompt('Nhập mật khẩu hiện tại:');
-    if (!currentPass || currentPass !== ADMIN_CONFIG.ADMIN_PASS) {
-        showAdminAlert(document.getElementById('adminAlerts'), 'error', 'Sai mật khẩu hiện tại!');
-        return;
-    }
-    
-    const newPass = prompt('Nhập mật khẩu mới (4 ký tự):');
-    if (newPass && newPass.trim() && newPass.trim().length >= 4) {
-        ADMIN_CONFIG.ADMIN_PASS = newPass.trim();
-        showAdminAlert(document.getElementById('adminAlerts'), 'success', 'Đã đổi mật khẩu thành công!');
-        setTimeout(() => {
-            resetAdminState();
-        }, 1500);
-    } else {
-        showAdminAlert(document.getElementById('adminAlerts'), 'error', 'Mật khẩu mới phải có ít nhất 4 ký tự!');
-    }
+    promptForAdminPassword(() => {
+        const newPass = prompt('Nhập mật khẩu MỚI (ít nhất 4 ký tự):');
+        if (newPass && newPass.trim().length >= 4) {
+            ADMIN_CONFIG.ADMIN_PASS = newPass.trim();
+            alert('Đã đổi mật khẩu thành công!');
+        } else if (newPass !== null) {
+            alert('Mật khẩu mới phải có ít nhất 4 ký tự!');
+        }
+    });
+}
+
+function showAdminAlert(el, type, msg) {
+    if (!el) return;
+    el.className = `admin-alert ${type} show`;
+    el.textContent = msg;
 }
 
 async function fetchAdminMenu() {
     const alertEl = document.getElementById('loadAlert');
     try {
         showAdminAlert(alertEl, 'info', 'Đang CẬP NHẬT MENU từ GoogleSheets');
+        const res = await fetch(`${ADMIN_CONFIG.MENU_SCRIPT_URL}?action=getMenu`);
+        if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
         
-        const res = await fetch(`${ADMIN_CONFIG.MENU_SCRIPT_URL}?action=getMenu`, { 
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'omit',
-            headers: {
-                'Content-Type': 'text/plain',
-                'Accept': 'application/json, text/plain, */*'
-            }
-        });
-        
-        if (!res.ok) {
-            throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-        }
-        
-        const responseText = await res.text();
-        
-        if (responseText.startsWith('Error:')) {
-            throw new Error(responseText.substring(6));
-        }
-        
-        let data;
-        try {
-            data = JSON.parse(responseText);
-        } catch (parseError) {
-            throw new Error(`Không thể parse JSON: ${parseError.message}`);
-        }
-        
-        if (data.error) {
-            throw new Error(data.error);
-        }
-        
-        if (!Array.isArray(data)) {
-            throw new Error('Phản hồi không phải là mảng JSON.');
-        }
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        if (!Array.isArray(data)) throw new Error('Phản hồi không phải là mảng JSON.');
         
         adminMenuData = data.map(x => ({
-            name: String(x.name ?? x.ten ?? "(Không tên)"),
-            price: Number(x.price ?? x.gia ?? 0) || 0,
-            status: String(x.status ?? x.trangThai ?? "Đang bán")
+            name: String(x.name ?? "(Không tên)"),
+            price: Number(x.price ?? 0),
+            status: String(x.status ?? "Đang bán")
         }));
         
         renderAdminMenuList();
-        showAdminAlert(alertEl, 'success', `✅ Đã CẬP NHẬT ${adminMenuData.length} món từ GoogleSheets`);
+        showAdminAlert(alertEl, 'success', `✅ Đã CẬP NHẬT ${adminMenuData.length} món`);
         
     } catch (err) {
         showAdminAlert(alertEl, 'error', `⚠ Lỗi tải menu: ${err.message}`);
@@ -2595,13 +2357,11 @@ function renderAdminMenuList() {
 
     const data = adminMenuData.filter(it => !term || it.name.toLowerCase().includes(term));
     if (!data.length) {
-        container.innerHTML = '<div class="admin-alert info show">Không có món nào khớp từ khóa.</div>';
+        container.innerHTML = '<div class="admin-alert info show">Không có món nào khớp.</div>';
         return;
     }
 
-    for (let i = 0; i < data.length; i++) {
-        const item = data[i];
-        const id = `sw_${i}`;
+    data.forEach((item, i) => {
         const row = document.createElement('div');
         row.className = 'menu-item';
         row.innerHTML = `
@@ -2610,104 +2370,45 @@ function renderAdminMenuList() {
                 <div class="price">${(item.price||0).toLocaleString('vi-VN')}đ</div>
             </div>
             <label class="switch" title="${item.status}">
-                <input id="${id}" type="checkbox" ${item.status !== 'Hết hàng' ? 'checked' : ''}
-                  onchange="toggleItemStatus(${i}, this)">
+                <input type="checkbox" ${item.status !== 'Hết hàng' ? 'checked' : ''} onchange="toggleItemStatus(${i}, this)">
                 <span class="slider"></span>
             </label>
         `;
         container.appendChild(row);
-    }
+    });
 }
 
 async function toggleItemStatus(index, checkbox) {
     const alertEl = document.getElementById('loadAlert');
-    const prev = adminMenuData[index].status;
-    const next = checkbox.checked ? 'Đang bán' : 'Hết hàng';
-    adminMenuData[index].status = next;
+    const item = adminMenuData[index];
+    const prevStatus = item.status;
+    const nextStatus = checkbox.checked ? 'Đang bán' : 'Hết hàng';
+    item.status = nextStatus;
     checkbox.disabled = true;
 
     try {
-        showAdminAlert(alertEl, 'info', `📞 Đang cập nhật "${adminMenuData[index].name}"...`);
-        
+        showAdminAlert(alertEl, 'info', `📞 Đang cập nhật "${item.name}"...`);
         const res = await fetch(ADMIN_CONFIG.MENU_SCRIPT_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain'
-            },
-            body: JSON.stringify({ 
-                action: 'updateStatus', 
-                name: adminMenuData[index].name, 
-                status: next 
-            })
+            headers: {'Content-Type': 'text/plain'},
+            body: JSON.stringify({ action: 'updateStatus', name: item.name, status: nextStatus })
         });
-        
-        if (!res.ok) {
-            throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         
         const responseText = await res.text();
+        if (responseText.includes('Error')) throw new Error(responseText);
         
-        if (responseText.startsWith('Error:')) {
-            throw new Error(responseText.substring(6));
-        }
-        
-        showAdminAlert(alertEl, 'success', `✅ "${adminMenuData[index].name}" → ${next}`);
-        
-        // Cập nhật menu chính
+        showAdminAlert(alertEl, 'success', `✅ "${item.name}" → ${nextStatus}`);
         loadMenuFromSheets();
         
     } catch (err) {
-        adminMenuData[index].status = prev;
-        checkbox.checked = prev !== 'Hết hàng';
+        item.status = prevStatus;
+        checkbox.checked = prevStatus !== 'Hết hàng';
         showAdminAlert(alertEl, 'error', `⚠ Lỗi cập nhật: ${err.message}`);
     } finally {
         checkbox.disabled = false;
     }
 }
-
-// Event listeners cho admin
-document.addEventListener('DOMContentLoaded', function() {
-    const adminPass = document.getElementById('adminPass');
-    if (adminPass) {
-        adminPass.addEventListener('input', (e) => {
-            const pass = e.target.value.trim();
-            const container = document.querySelector('.password-input-container');
-            
-            if (passwordCheckTimeout) {
-                clearTimeout(passwordCheckTimeout);
-            }
-            
-            if (pass) {
-                container.classList.add('checking');
-                passwordCheckTimeout = setTimeout(() => {
-                    checkAdminPass();
-                    container.classList.remove('checking');
-                }, 500);
-            } else {
-                container.classList.remove('checking');
-            }
-        });
-
-        adminPass.addEventListener('input', (e) => {
-    const pass = e.target.value.trim();
-    const container = document.querySelector('.password-input-container');
-    
-    if (passwordCheckTimeout) {
-        clearTimeout(passwordCheckTimeout);
-    }
-    
-    if (pass.length >= 4) {
-        container.classList.add('checking');
-        passwordCheckTimeout = setTimeout(() => {
-            checkAdminPass();
-            container.classList.remove('checking');
-        }, 500);
-    } else {
-        container.classList.remove('checking');
-    }
-});
-    }
-});
  
 function toggleWardDropdown() {
     const dropdown = document.getElementById('wardDropdown');
@@ -2716,141 +2417,91 @@ function toggleWardDropdown() {
 
 function selectWard(value) {
     document.getElementById('ward').value = value;
-    document.getElementById('wardDropdown').style.display = 'none';
+    toggleWardDropdown();
 }
 
-// Đóng dropdown khi click bên ngoài
 document.addEventListener('click', function(e) {
     if (!e.target.closest('.custom-select-wrapper')) {
         document.getElementById('wardDropdown').style.display = 'none';
     }
 });
 
-
-// =============================================================
-// === PHẦN ĐƯỢC CẬP NHẬT - QUẢN LÝ GIỜ HOẠT ĐỘNG           ===
-// =============================================================
-
-// !!! QUAN TRỌNG: Dán URL Web App bạn đã triển khai ở Bước 2 vào đây
-const STORE_HOURS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnBszsMiCzEA11NCPdsQ63JZBIcO3EM4RV32W59-s6p3XqVkmkvH3WWBEvezDXs9V5mA/exec';
-
-// Biến lưu trữ dữ liệu giờ hoạt động
+const STORE_HOURS_SCRIPT_URL = SCRIPT_URLS.storeHours;
 let normalHours = [];
 let breakPeriods = [];
 
-// Load dữ liệu giờ hoạt động từ Google Sheets (khi đăng nhập admin)
 async function loadStoreHours() {
     const alertEl = document.getElementById('storeHoursAlert');
     try {
         showAdminAlert(alertEl, 'info', 'Đang tải giờ hoạt động...');
-        
         const response = await fetch(`${STORE_HOURS_SCRIPT_URL}?action=getStoreHours`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
         const data = await response.json();
         if(data.error) throw new Error(data.error);
-        
-        // [SỬA LỖI] Cập nhật dữ liệu mặc định chính xác
-        normalHours = (data.normalHours && data.normalHours.length > 0) 
+
+        normalHours = (data.normalHours?.length > 0) 
             ? data.normalHours 
-            : [ 
-                { startHour: '06', startMinute: '00', endHour: '13', endMinute: '00' },
-                { startHour: '16', startMinute: '00', endHour: '20', endMinute: '00' }
-              ];
+            : [{ startHour: '06', startMinute: '00', endHour: '13', endMinute: '00' }, { startHour: '16', startMinute: '00', endHour: '20', endMinute: '00' }];
         breakPeriods = data.breakPeriods || [];
         
         renderNormalHours();
         renderBreakPeriods();
         updateAdminShopInfoHours(); 
-        
         showAdminAlert(alertEl, 'success', 'Tải giờ hoạt động thành công!');
-        
     } catch (error) {
         showAdminAlert(alertEl, 'error', `Lỗi tải dữ liệu: ${error.message}`);
     }
 }
 
-// Render danh sách giờ hoạt động thông thường
 function renderNormalHours() {
     const container = document.getElementById('normalHoursList');
-    container.innerHTML = '';
-    
-    normalHours.forEach((hour, index) => {
-        const div = document.createElement('div');
-        div.className = 'hour-range-item';
-        div.innerHTML = `
+    container.innerHTML = normalHours.map((hour, index) => `
+        <div class="hour-range-item">
             <div class="time-inputs">
-                <select class="time-input" onchange="updateNormalHour(${index}, 'startHour', this.value)">
-                    ${generateHourOptions(hour.startHour)}
-                </select>
+                <select class="time-input" onchange="updateNormalHour(${index}, 'startHour', this.value)">${generateHourOptions(hour.startHour)}</select>
                 <span>:</span>
-                <select class="time-input" onchange="updateNormalHour(${index}, 'startMinute', this.value)">
-                    ${generateMinuteOptions(hour.startMinute)}
-                </select>
+                <select class="time-input" onchange="updateNormalHour(${index}, 'startMinute', this.value)">${generateMinuteOptions(hour.startMinute)}</select>
                 <span class="time-separator">→</span>
-                <select class="time-input" onchange="updateNormalHour(${index}, 'endHour', this.value)">
-                    ${generateHourOptions(hour.endHour)}
-                </select>
+                <select class="time-input" onchange="updateNormalHour(${index}, 'endHour', this.value)">${generateHourOptions(hour.endHour)}</select>
                 <span>:</span>
-                <select class="time-input" onchange="updateNormalHour(${index}, 'endMinute', this.value)">
-                    ${generateMinuteOptions(hour.endMinute)}
-                </select>
+                <select class="time-input" onchange="updateNormalHour(${index}, 'endMinute', this.value)">${generateMinuteOptions(hour.endMinute)}</select>
             </div>
-        `;
-        container.appendChild(div);
-    });
+        </div>`).join('');
 }
 
-function generateHourOptions(selectedHour) {
-    let options = '';
+function generateHourOptions(selected) {
+    let opts = '';
     for (let i = 0; i <= 23; i++) {
-        const hourStr = i.toString().padStart(2, '0');
-        options += `<option value="${hourStr}" ${hourStr === selectedHour ? 'selected' : ''}>${hourStr}</option>`;
+        const h = i.toString().padStart(2, '0');
+        opts += `<option value="${h}" ${h === selected ? 'selected' : ''}>${h}</option>`;
     }
-    return options;
+    return opts;
 }
-
-function generateMinuteOptions(selectedMinute) {
-    const minutes = ['00', '15', '30', '45'];
-    let options = '';
-    minutes.forEach(minute => {
-        options += `<option value="${minute}" ${minute === selectedMinute ? 'selected' : ''}>${minute}</option>`;
-    });
-    return options;
+function generateMinuteOptions(selected) {
+    return ['00', '15', '30', '45'].map(m => `<option value="${m}" ${m === selected ? 'selected' : ''}>${m}</option>`).join('');
 }
-
 function updateNormalHour(index, field, value) {
     normalHours[index][field] = value;
 }
 
 function renderBreakPeriods() {
     const container = document.getElementById('currentBreaks');
-    container.innerHTML = '';
-    
-    if (breakPeriods.length === 0) {
+    if (!breakPeriods || breakPeriods.length === 0) {
         container.innerHTML = '<div style="text-align: center; color: #666; padding: 10px 0; font-size: 13px;">Chưa có lịch nghỉ nào.</div>';
         return;
     }
-    
-    breakPeriods.forEach((breakPeriod, index) => {
-        const div = document.createElement('div');
-        div.className = 'break-period-item';
-        
-        const startDate = new Date(breakPeriod.startDate);
-        const endDate = new Date(breakPeriod.endDate);
-        const formatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-        
-        div.innerHTML = `
+    container.innerHTML = breakPeriods.map((bp, index) => {
+        const formattedStart = new Date(bp.startDate + 'T00:00:00').toLocaleDateString('vi-VN');
+        const formattedEnd = new Date(bp.endDate + 'T00:00:00').toLocaleDateString('vi-VN');
+        return `
+        <div class="break-period-item">
             <div class="break-info">
-                <div class="break-dates">
-                    ${startDate.toLocaleDateString('vi-VN', formatOptions)} - ${endDate.toLocaleDateString('vi-VN', formatOptions)}
-                </div>
-                ${breakPeriod.reason ? `<div class="break-reason">${breakPeriod.reason}</div>` : ''}
+                <div class="break-dates">${formattedStart} - ${formattedEnd}</div>
+                ${bp.reason ? `<div class="break-reason">${bp.reason}</div>` : ''}
             </div>
             <button class="delete-break-btn" onclick="deleteBreakPeriod(${index})">Xóa</button>
-        `;
-        container.appendChild(div);
-    });
+        </div>`;
+    }).join('');
 }
 
 function addBreakPeriod() {
@@ -2859,18 +2510,9 @@ function addBreakPeriod() {
     const reason = document.getElementById('breakReason').value.trim();
     const alertEl = document.getElementById('storeHoursAlert');
     
-    if (!startDate || !endDate) {
-        showAdminAlert(alertEl, 'error', 'Vui lòng chọn ngày bắt đầu và kết thúc.');
-        return;
-    }
-    if (new Date(startDate) > new Date(endDate)) {
-        showAdminAlert(alertEl, 'error', 'Ngày bắt đầu không thể sau ngày kết thúc.');
-        return;
-    }
-    if (checkBreakPeriodConflict(startDate, endDate)) {
-        if (!confirm('Lịch nghỉ này bị trùng với một lịch đã có. Bạn có muốn thêm không?')) return;
-    }
-    
+    if (!startDate || !endDate) return showAdminAlert(alertEl, 'error', 'Vui lòng chọn ngày bắt đầu và kết thúc.');
+    if (new Date(startDate) > new Date(endDate)) return showAdminAlert(alertEl, 'error', 'Ngày bắt đầu không thể sau ngày kết thúc.');
+
     breakPeriods.push({ startDate, endDate, reason: reason || 'Tạm nghỉ' });
     document.getElementById('breakStartDate').value = '';
     document.getElementById('breakEndDate').value = '';
@@ -2878,7 +2520,6 @@ function addBreakPeriod() {
     renderBreakPeriods();
     showAdminAlert(alertEl, 'success', 'Đã thêm thời gian nghỉ.');
 }
-
 function deleteBreakPeriod(index) {
     breakPeriods.splice(index, 1);
     renderBreakPeriods();
@@ -2888,241 +2529,293 @@ async function saveStoreHours() {
     const alertEl = document.getElementById('storeHoursAlert');
     try {
         showAdminAlert(alertEl, 'info', 'Đang lưu giờ hoạt động...');
-        
-        const dataToSave = {
-            action: 'saveStoreHours',
-            normalHours: normalHours,
-            breakPeriods: breakPeriods
-        };
-        
         const response = await fetch(STORE_HOURS_SCRIPT_URL, {
             method: 'POST',
-            body: JSON.stringify(dataToSave),
-            // Không cần header Content-Type vì Apps Script sẽ tự xử lý khi nhận dạng được chuỗi JSON
+            body: JSON.stringify({ action: 'saveStoreHours', normalHours, breakPeriods }),
         });
-
-        if (!response.ok) {
-            throw new Error(`Lỗi mạng: ${response.statusText} (status: ${response.status})`);
-        }
-        
+        if (!response.ok) throw new Error(`Lỗi mạng: ${response.statusText}`);
         const result = await response.json();
-        if (result.status !== 'success') {
-            throw new Error(result.message || 'Lỗi không xác định từ server.');
-        }
+        if (result.status !== 'success') throw new Error(result.message || 'Lỗi không xác định.');
 
         showAdminAlert(alertEl, 'success', 'Lưu giờ hoạt động thành công!');
         updateAdminShopInfoHours();
         loadStoreHoursForCheck();
-        
     } catch (error) {
-        console.error('Save Store Hours Fetch Error:', error);
-        let errorMessage = `Lỗi lưu dữ liệu: ${error.message}.`;
-        if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
-            errorMessage += ' Lỗi này thường do URL hoặc lỗi triển khai Apps Script. Vui lòng kiểm tra lại URL và làm theo hướng dẫn triển khai lại Web App một cách chính xác.';
-        }
-        showAdminAlert(alertEl, 'error', errorMessage);
+        showAdminAlert(alertEl, 'error', `Lỗi lưu dữ liệu: ${error.message}.`);
     }
 }
-
-// === LOGIC KIỂM TRA TRẠNG THÁI QUÁN (ĐÃ SỬA LỖI GIỜ QUA ĐÊM) ===
-
+ 
 function updateProductButtonsState() {
-    const grid = document.getElementById('productsGrid');
-    if (isStoreOpen) {
-        grid.classList.remove('store-closed');
-    } else {
-        grid.classList.add('store-closed');
-    }
+    document.getElementById('productsGrid').classList.toggle('store-closed', !isStoreOpen);
 }
 
 function checkStoreStatus() {
     const now = new Date();
     const currentDate = now.toISOString().split('T')[0];
     const currentTimeInMinutes = now.getHours() * 60 + now.getMinutes();
-    
-    const isBreakDay = isDateInBreakPeriod(currentDate);
+    const isBreakDay = breakPeriods.some(bp => currentDate >= bp.startDate && currentDate <= bp.endDate);
     if (isBreakDay) {
+        const currentBreak = breakPeriods.find(bp => currentDate >= bp.startDate && currentDate <= bp.endDate);
         isStoreOpen = false;
-        const { nextDay, reason } = getNextWorkingDayInfo(currentDate);
-        const earliestHour = getEarliestOperatingHour();
-        const openTimeStr = `${earliestHour.startHour}:${earliestHour.startMinute}`;
-        const reopenDateStr = formatVietnameseDate(nextDay);
-        const breakMessage = `${reason}.<br>Quán sẽ hoạt động lại vào ${openTimeStr} ${reopenDateStr}.`;
-        showStoreClosedPopup('Quán đang TẠM NGHỈ', breakMessage);
+        showStoreClosedPopup('Quán đang TẠM NGHỈ', `${currentBreak.reason || 'Sẽ sớm hoạt động trở lại.'}`);
         updateProductButtonsState();
         return;
     }
-    
-    const isOpenNow = isCurrentlyOpen(currentTimeInMinutes);
-    if (isOpenNow) {
-        isStoreOpen = true;
-        updateProductButtonsState();
-        return;
+    let storeIsOpenNow = false;
+    for (const hour of normalHours) {
+        const startTime = parseInt(hour.startHour) * 60 + parseInt(hour.startMinute);
+        const endTime = parseInt(hour.endHour) * 60 + parseInt(hour.endMinute);
+        if (startTime <= endTime) {
+            if (currentTimeInMinutes >= startTime && currentTimeInMinutes < endTime) {
+                storeIsOpenNow = true;
+                break;
+            }
+        } 
+        else {
+            if (currentTimeInMinutes >= startTime || currentTimeInMinutes < endTime) {
+                storeIsOpenNow = true;
+                break;
+            }
+        }
     }
-    
-    isStoreOpen = false;
-    const nextOpenInfo = getNextOpeningTime(currentDate, currentTimeInMinutes);
-    showStoreClosedPopup('QUÁN TẠM ĐÓNG CỬA', nextOpenInfo.message);
+    isStoreOpen = storeIsOpenNow;
+    if (!isStoreOpen) {
+        const allOpeningSlots = normalHours
+            .map(h => ({ 
+                time: parseInt(h.startHour) * 60 + parseInt(h.startMinute), 
+                str: `${h.startHour}:${h.startMinute}` 
+            }))
+            .sort((a, b) => a.time - b.time);
+        const nextSlotToday = allOpeningSlots.find(slot => slot.time > currentTimeInMinutes);
+        let message;
+        if (nextSlotToday) {
+            message = `Quán sẽ mở cửa lại vào ${nextSlotToday.str} hôm nay.`;
+        } else {
+            message = `Quán sẽ mở cửa lại vào ${allOpeningSlots[0].str} ngày mai.`;
+        }
+        showStoreClosedPopup('QUÁN TẠM ĐÓNG CỬA', message);
+    }
     updateProductButtonsState();
 }
 
-function isDateInBreakPeriod(dateStr) {
-    return breakPeriods.some(bp => dateStr >= bp.startDate && dateStr <= bp.endDate);
-}
-
-function getNextWorkingDayInfo(currentDateStr) {
-    let checkDate = new Date(new Date(currentDateStr).getTime() + 24 * 60 * 60 * 1000); // Bắt đầu từ ngày mai
-    while (isDateInBreakPeriod(checkDate.toISOString().split('T')[0])) {
-        checkDate.setDate(checkDate.getDate() + 1);
-    }
-    const currentBreak = breakPeriods.find(bp => currentDateStr >= bp.startDate && bp.endDate >= currentDateStr);
-    return { nextDay: checkDate, reason: currentBreak ? currentBreak.reason : "Tạm nghỉ" };
-}
-
-function getEarliestOperatingHour() {
-    if (normalHours.length === 0) return { startHour: '06', startMinute: '00' };
-    return [...normalHours].sort((a, b) => (parseInt(a.startHour)*60 + parseInt(a.startMinute)) - (parseInt(b.startHour)*60 + parseInt(b.startMinute)))[0];
-}
-
-function isCurrentlyOpen(currentTimeInMinutes) {
-    return normalHours.some(hour => {
-        const startTime = parseInt(hour.startHour) * 60 + parseInt(hour.startMinute);
-        const endTime = parseInt(hour.endHour) * 60 + parseInt(hour.endMinute);
-        if (startTime <= endTime) { // Khung giờ trong ngày
-            return currentTimeInMinutes >= startTime && currentTimeInMinutes < endTime;
-        } else { // Khung giờ qua đêm (ví dụ: 16:00 - 05:00)
-            return currentTimeInMinutes >= startTime || currentTimeInMinutes < endTime;
-        }
-    });
-}
-
-function getNextOpeningTime(currentDateStr, currentTimeInMinutes) {
-    const allOpeningSlots = [];
-    normalHours.forEach(h => {
-        allOpeningSlots.push({ 
-            time: parseInt(h.startHour) * 60 + parseInt(h.startMinute),
-            str: `${h.startHour}:${h.startMinute}`
-        });
-    });
-
-    allOpeningSlots.sort((a, b) => a.time - b.time);
-
-    // Tìm khung giờ tiếp theo trong ngày
-    const nextSlotToday = allOpeningSlots.find(slot => slot.time > currentTimeInMinutes);
-    if (nextSlotToday) {
-        return { message: `Quán sẽ mở cửa lại vào ${nextSlotToday.str} hôm nay.` };
-    }
-    
-    // Nếu không còn, tìm ngày làm việc tiếp theo
-    let nextWorkingDay = new Date(new Date(currentDateStr).getTime() + 24 * 60 * 60 * 1000);
-    while (isDateInBreakPeriod(nextWorkingDay.toISOString().split('T')[0])) {
-        nextWorkingDay.setDate(nextWorkingDay.getDate() + 1);
-    }
-    
-    const earliestHour = allOpeningSlots[0]; // Giờ mở cửa sớm nhất
-    const nextWorkingDayFormatted = formatVietnameseDate(nextWorkingDay);
-    
-    return { message: `Quán sẽ mở cửa lại vào ${earliestHour.str} ${nextWorkingDayFormatted}.` };
-}
-
-function formatVietnameseDate(date) {
-    const today = new Date(); today.setHours(0,0,0,0);
-    const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
-    
-    date.setHours(0,0,0,0);
-
-    if (date.getTime() === today.getTime()) return 'hôm nay';
-    if (date.getTime() === tomorrow.getTime()) return 'ngày mai';
-
-    return 'ngày ' + date.toLocaleDateString('vi-VN', {
-        weekday: 'long', day: '2-digit', month: '2-digit'
-    });
-}
-
 function showStoreClosedPopup(title, message) {
-    const popup = document.getElementById('storeStatusPopup');
-    if (!popup) return;
-    
     document.getElementById('storeStatusTitle').textContent = title;
     document.getElementById('storeStatusMessage').innerHTML = message;
-    popup.classList.add('show');
+    document.getElementById('storeStatusPopup').classList.add('show');
     document.body.style.overflow = 'hidden';
 }
-
 function closeStoreStatusPopup() {
-    const popup = document.getElementById('storeStatusPopup');
-    if (popup) popup.classList.remove('show');
+    document.getElementById('storeStatusPopup').classList.remove('show');
     document.body.style.overflow = 'auto';
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadStoreHoursForCheck();
-});
 
 async function loadStoreHoursForCheck() {
     try {
         const response = await fetch(`${STORE_HOURS_SCRIPT_URL}?action=getStoreHours`);
         if (response.ok) {
             const data = await response.json();
-            if (data.normalHours && data.normalHours.length > 0) {
-                 normalHours = data.normalHours;
-            } else {
-                // [SỬA LỖI] Khôi phục 2 khung giờ mặc định chính xác
-                normalHours = [
-                    { startHour: '06', startMinute: '00', endHour: '13', endMinute: '00' },
-                    { startHour: '16', startMinute: '00', endHour: '20', endMinute: '00' } 
-                ];
-            }
-            if (data.breakPeriods) breakPeriods = data.breakPeriods;
+            normalHours = data.normalHours?.length > 0 ? data.normalHours : [{startHour: '06',startMinute: '00',endHour: '13',endMinute: '00'}, {startHour: '16',startMinute: '00',endHour: '20',endMinute: '00'}];
+            breakPeriods = data.breakPeriods || [];
         }
     } catch (error) {
         console.warn('Không thể tải giờ từ xa, dùng giờ mặc định.', error);
-        // [SỬA LỖI] Khôi phục 2 khung giờ mặc định chính xác khi fetch lỗi
-        normalHours = [
-            { startHour: '06', startMinute: '00', endHour: '13', endMinute: '00' },
-            { startHour: '16', startMinute: '00', endHour: '20', endMinute: '00' }
-        ];
+        normalHours = [{startHour: '06',startMinute: '00',endHour: '13',endMinute: '00'}, {startHour: '16',startMinute: '00',endHour: '20',endMinute: '00'}];
     } finally {
         updateAdminShopInfoHours(); 
         checkStoreStatus();
     }
 }
- 
-function checkBreakPeriodConflict(newStartDate, newEndDate) {
-    return breakPeriods.some(existing => (newStartDate <= existing.endDate && newEndDate >= existing.startDate));
-}
+document.addEventListener('DOMContentLoaded', loadStoreHoursForCheck);
         
 function updateAdminShopInfoHours() {
     const container = document.getElementById('adminShopOpeningHours');
-    if (!container) return;
+    if (!container || !normalHours || normalHours.length === 0) return;
+    const sortedHours = [...normalHours].sort((a, b) => (parseInt(a.startHour) * 60 + parseInt(a.startMinute)) - (parseInt(b.startHour) * 60 + parseInt(b.startMinute)));
+    const formattedStrings = sortedHours.map(range => `<span style="color: #02a046; font-weight: bold;">${range.startHour}:${range.startMinute} - ${range.endHour}:${range.endMinute}</span>`);
+    container.innerHTML = `<strong>Giờ mở cửa:</strong><div style="line-height: 1.6; margin-top: 4px;">${formattedStrings.join('<br>')}</div>`;
+}
 
-    if (!normalHours || normalHours.length === 0) {
-        container.innerHTML = '<strong>Giờ mở cửa:</strong> Chưa cài đặt.';
+let allFetchedOrders = [];
+const INITIAL_ORDER_DISPLAY_COUNT = 10;
+
+async function fetchPendingOrders() {
+    const alertEl = document.getElementById('orderAlert');
+    const listContainer = document.getElementById('adminOrderList');
+    showAdminAlert(alertEl, 'info', 'Đang tải các đơn hàng...');
+    listContainer.innerHTML = '<div class="loading-spinner" style="margin: 20px auto;"></div>';
+
+    try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getOrders`);
+        if (!response.ok) throw new Error(`Lỗi mạng: ${response.status}`);
+        const orders = await response.json();
+        if (orders.error) throw new Error(orders.message);
+        
+        orders.sort((a, b) => {
+            const isAWaiting = a.status === 'Chờ xác nhận';
+            const isBWaiting = b.status === 'Chờ xác nhận';
+            if (isAWaiting && !isBWaiting) return -1;
+            if (!isAWaiting && isBWaiting) return 1;
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+
+        allFetchedOrders = orders;
+        showAdminAlert(alertEl, 'success', `Đã tải ${allFetchedOrders.length} đơn hàng.`);
+        renderOrderList(true);
+
+    } catch (error) {
+        showAdminAlert(alertEl, 'error', `Lỗi tải đơn hàng: ${error.message}`);
+        listContainer.innerHTML = '';
+    }
+}
+
+function renderOrderList(isInitial = false) {
+    const container = document.getElementById('adminOrderList');
+    const ordersToDisplay = isInitial ? allFetchedOrders.slice(0, INITIAL_ORDER_DISPLAY_COUNT) : allFetchedOrders;
+    
+    container.innerHTML = '';
+    if (ordersToDisplay.length === 0) {
+        container.innerHTML = '<div class="admin-alert info show">Không có đơn hàng nào.</div>';
         return;
     }
 
-    const sortedHours = [...normalHours].sort((a, b) => 
-        (parseInt(a.startHour) * 60 + parseInt(a.startMinute)) - 
-        (parseInt(b.startHour) * 60 + parseInt(b.startMinute))
-    );
+    ordersToDisplay.forEach(order => {
+        const statusString = String(order.status || '').toLowerCase();
+        const statusClass = `status-${statusString.replace(/[^a-z0-9]/g, '-')}`;
+        const orderDate = new Date(order.timestamp);
+        const formattedTime = orderDate.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+        const formattedDate = orderDate.toLocaleDateString('vi-VN');
+        
+        const card = document.createElement('div');
+        card.className = `order-card ${statusClass}`;
 
-    const formattedStrings = sortedHours.map(range => {
-        const startHour = parseInt(range.startHour);
-        let label;
-        if (startHour >= 4 && startHour < 12) label = '- Sáng: ';
-        else if (startHour >= 12 && startHour < 18) label = '- Chiều: ';
-        else label = '- Tối: ';
-        
-        // === SỬA LỖI TẠI ĐÂY ===
-        // Đã thay đổi sortedHours[0].endHour thành range.endHour 
-        // để lấy đúng giờ kết thúc của từng khung giờ.
-        const timeString = `${label}${range.startHour}:${range.startMinute} đến ${range.endHour}:${range.endMinute}`;
-        
-        return `<span style="color: #02a046; font-weight: bold;">${timeString}</span>`;
+        // YÊU CẦU #3: Thay đổi giao diện đơn hàng
+        const cleanPhone = (order.customerPhone || '').replace(/'/g, "");
+        card.innerHTML = `
+            <div class="order-header">
+                <div class="order-customer">
+                    ${order.customerName} 
+                    <a href="tel:${cleanPhone}" style="font-weight: normal; color: #black; text-decoration: none;"> - ${cleanPhone}</a>
+                </div>
+                <div class="order-total">${parseInt(order.total).toLocaleString('vi-VN')}</div>
+            </div>
+            <div class="order-details">
+                <p><strong>Địa chỉ:</strong> ${order.address || ''}</p>
+                ${order.note ? `<p><strong>Ghi chú:</strong> ${order.note}</p>` : ''}
+                <div class="order-items"><strong>Món đã đặt:</strong><br>${(order.items || '').replace(/\n/g, '<br>')}</div>
+                <p><small><strong>Thời gian:</strong> ${formattedTime} - ${formattedDate}</small></p>
+            </div>
+            <div class="order-actions">
+                <label for="status-${order.rowNumber}">Trạng thái:</label>
+                <select id="status-${order.rowNumber}" class="order-status-select" onchange="updateOrderStatus(${order.rowNumber}, this)">
+                    <option value="Chờ xác nhận" ${order.status === 'Chờ xác nhận' ? 'selected' : ''}>⏳ Chờ xác nhận</option>
+                    <option value="Đang giao" ${order.status === 'Đang giao' ? 'selected' : ''}>🚚 Đang giao</option>
+                    <option value="Hoàn thành" ${order.status === 'Hoàn thành' ? 'selected' : ''}>✅ Hoàn thành</option>
+                    <option value="Đã hủy" ${order.status === 'Đã hủy' ? 'selected' : ''}>❌ Đã hủy</option>
+                </select>
+            </div>`;
+        container.appendChild(card);
     });
-    
-    container.innerHTML = `<strong>Giờ mở cửa:</strong><div style="line-height: 1.6; margin-top: 4px;">${formattedStrings.join('<br>')}</div>`;
+
+    if (isInitial && allFetchedOrders.length > INITIAL_ORDER_DISPLAY_COUNT) {
+        const loadMoreButton = document.createElement('button');
+        loadMoreButton.textContent = `Xem thêm ${allFetchedOrders.length - INITIAL_ORDER_DISPLAY_COUNT} đơn hàng cũ hơn`;
+        loadMoreButton.className = 'submit-btn';
+        loadMoreButton.style.cssText = 'width: 100%; margin-top: 15px; background-color: #e9ecef; color: #333;';
+        loadMoreButton.onclick = () => renderOrderList(false);
+        container.appendChild(loadMoreButton);
+    }
 }
+
+async function updateOrderStatus(rowNumber, selectElement) {
+    const newStatus = selectElement.value;
+    const alertEl = document.getElementById('orderAlert');
+    selectElement.disabled = true;
+    const originalBorder = selectElement.style.border;
+    selectElement.style.border = '2px solid #ffc107';
+    showAdminAlert(alertEl, 'info', `Đang cập nhật đơn hàng...`);
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'text/plain'},
+            body: JSON.stringify({ action: 'updateStatus', rowNumber, status: newStatus })
+        });
+        const result = await response.json();
+        if (result.status !== 'success') throw new Error(result.message || 'Lỗi từ server.');
+
+        showAdminAlert(alertEl, 'success', `Cập nhật thành công! Trạng thái: ${newStatus}.`);
+        selectElement.style.border = '2px solid #198754';
+        
+        const orderCard = selectElement.closest('.order-card');
+        if (orderCard) {
+            orderCard.className = 'order-card';
+            orderCard.classList.add(`status-${newStatus.toLowerCase().replace(/[^a-z0-9]/g, '-')}`);
+        }
+    } catch (error) {
+        showAdminAlert(alertEl, 'error', `Lỗi cập nhật: ${error.message}`);
+        selectElement.style.border = '2px solid #dc3545';
+        const order = allFetchedOrders.find(o => o.rowNumber === rowNumber);
+        if (order) selectElement.value = order.status;
+    } finally {
+        setTimeout(() => {
+            selectElement.disabled = false;
+            selectElement.style.border = originalBorder;
+        }, 1000);
+    }
+}
+
+function promptForAdminPassword(onSuccess) {
+    const promptEl = document.getElementById('passwordPrompt');
+    const inputs = document.querySelectorAll('.password-digit');
+    afterPasswordSuccessCallback = onSuccess;
+    inputs.forEach(input => input.value = '');
+    promptEl.style.display = 'flex';
+    inputs[0].focus();
+}
+
+function closePasswordPrompt() {
+    document.getElementById('passwordPrompt').style.display = 'none';
+    afterPasswordSuccessCallback = null;
+}
+
+function setupPasswordInputListeners() {
+    const inputs = Array.from(document.querySelectorAll('.password-digit'));
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            if (input.value && index < inputs.length - 1) inputs[index + 1].focus();
+            if (inputs.every(i => i.value)) verifyPassword();
+        });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !input.value && index > 0) inputs[index - 1].focus();
+        });
+    });
+}
+
+function verifyPassword() {
+    const promptEl = document.getElementById('passwordPrompt');
+    const inputs = document.querySelectorAll('.password-digit');
+    const enteredPassword = Array.from(inputs).map(i => i.value).join('');
+
+    if (enteredPassword === ADMIN_CONFIG.ADMIN_PASS) {
+        if (typeof afterPasswordSuccessCallback === 'function') {
+            afterPasswordSuccessCallback();
+        }
+        closePasswordPrompt();
+    } else {
+        promptEl.classList.add('shake');
+        inputs.forEach(input => {
+            input.value = '';
+            input.style.borderColor = '#dc3545';
+        });
+        setTimeout(() => {
+            promptEl.classList.remove('shake');
+            inputs.forEach(input => input.style.borderColor = '#ccc');
+            inputs[0].focus();
+        }, 500);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', setupPasswordInputListeners);
 </script>
 
 <div class="bottom-nav">

@@ -108,60 +108,6 @@
             font-weight: bold;
             color: #02a046;
         }
-
-        /* === SKELETON LOADER FOR FASTER PERCEIVED LOAD === */
-        .skeleton-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            display: none; /* Ẩn mặc định */
-        }
-        .products-grid.loading .skeleton-card {
-            display: block; /* Chỉ hiện khi đang tải */
-        }
-        .skeleton-image {
-            aspect-ratio: 1;
-            background: #f0f0f0;
-            margin: 1px;
-            border-radius: 15px;
-            animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .skeleton-info {
-            padding: 8px;
-        }
-        .skeleton-text {
-            height: 24px;
-            background: #f0f0f0;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .skeleton-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-        .skeleton-price {
-            width: 50%;
-            height: 22px;
-            background: #f0f0f0;
-            border-radius: 8px;
-            animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .skeleton-button {
-            width: 28px;
-            height: 28px;
-            background: #f0f0f0;
-            border-radius: 50%;
-            animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes skeleton-pulse {
-            50% {
-                opacity: 0.5;
-            }
-        }
     </style>
 </head>
 <body>
@@ -179,64 +125,270 @@
         <div class="featured-subtitle">Được làm từ nguyên liệu tươi, ngon và chất lượng</div>
     </div>
     <div class="products-container">
-        <div class="products-grid store-closed loading" id="productsGrid">
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+        <div class="products-grid store-closed" id="productsGrid">
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Hủ tíu Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Hủ tíu Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Hủ tíu Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Hủ tíu Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Hủ tíu Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/13Kr5615/Bun-Bo-sua.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún bò Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún bò Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún bò Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún bò Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún bò Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/YSnNQHS5/Bun-Rieu-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún riêu Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún riêu Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún riêu Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún riêu Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún riêu Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fW5TH5NH/Banh-Canh-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bánh canh Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bánh canh Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bánh canh Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bánh canh Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bánh canh Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/JnsNq2DG/buthai.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún Thái Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún Thái Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún Thái Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún Thái Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún Thái Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="skeleton-card">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-info">
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton-price"></div>
-                        <div class="skeleton-button"></div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/rpFCdmqG/Bun-Xao-Chay.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún xào Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún xào Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún xào Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún xào Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún xào Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún măng Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún măng Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún măng Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún măng Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún măng Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Hoành thánh Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Hoành thánh Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Hoành thánh Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Hoành thánh Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Hoành thánh Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Bún mắm Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Bún mắm Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Bún mắm Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Bún mắm Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Bún mắm Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Món ăn" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Mì Chay" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Mì Chay</div>
+                    <div class="product-footer">
+                        <div class="product-price">25.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Mì Chay', 25000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Mì Chay', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Mì Chay', 25000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Nước uống" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/ZYyPvXzQ/NuocSam.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Nước Sâm" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Nước Sâm</div>
+                    <div class="product-footer">
+                        <div class="product-price">8.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Nước Sâm', 8000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước Sâm', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước Sâm', 8000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Nước uống" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/yY4mmnV8/tiato.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Nước Tía tô" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Nước Tía Tô</div>
+                    <div class="product-footer">
+                        <div class="product-price">8.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Nước Tía Tô', 8000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước Tía Tô', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước Tía Tô', 8000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Nước uống" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/x8HKrNPQ/SuongSa.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Sương sa Hạt é" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Sương Sa Hạt É</div>
+                    <div class="product-footer">
+                        <div class="product-price">8.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Sương Sa Hạt É', 8000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Sương Sa Hạt É', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Sương Sa Hạt É', 8000, this)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-category="Nước uống" data-status="Đang bán">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/fR3t7jnb/1.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" alt="Nước Suối" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Nước Suối</div>
+                    <div class="product-footer">
+                        <div class="product-price">8.000</div>
+                        <div class="product-controls">
+                            <button class="add-btn" onclick="addToCart('Nước Suối', 8000, this)">+</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantityOnCard('Nước Suối', this)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn increase" onclick="increaseQuantityOnCard('Nước Suối', 8000, this)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -920,12 +1072,10 @@
             if (!response.ok) throw new Error('Network response was not ok');
             menuData = await response.json();
             generateMenuHTML();
-            // Đặt lại bộ lọc về 'Tất cả' sau khi tải menu thành công
             showCategory('all', document.querySelector('.category-tab.active'));
         } catch (error) {
             console.error('Lỗi load menu:', error);
             if (productsGrid) {
-                productsGrid.classList.remove('loading');
                 productsGrid.innerHTML = '<p style="text-align:center; color: red;">Không thể tải thực đơn. Vui lòng thử lại sau.</p>'
             }
         }
@@ -934,8 +1084,6 @@
     function generateMenuHTML() {
         const productsGrid = document.getElementById('productsGrid');
         if (!productsGrid) return;
-
-        productsGrid.classList.remove('loading'); 
 
         if (!menuData || menuData.length === 0) {
              productsGrid.innerHTML = '<p style="text-align:center;">Không có sản phẩm nào.</p>';
@@ -949,13 +1097,10 @@
             const isOutOfStock = item.status === 'Hết hàng';
             const disabledClass = isOutOfStock ? ' disabled' : '';
             
-            // --- LOGIC SỬA LỖI ---
-            // Xác định danh mục một cách thông minh
             let categoryName = item.category;
             if (!categoryName || categoryName.trim() === '') {
                 categoryName = drinkNames.includes(item.name) ? 'Nước uống' : 'Món ăn';
             }
-            // --- KẾT THÚC SỬA LỖI ---
             
             const productImage = PRODUCT_IMAGES[item.name] || item.image || 'https://i.postimg.cc/26g4X7hT/Hu-Tiu-Chay.jpg';
             
@@ -1014,7 +1159,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        loadMenuFromSheets();
+        // THAY ĐỔI #2: Không gọi loadMenuFromSheets() ở đây nữa
         const nameInput = document.getElementById('customerName');
         if (nameInput) {
             nameInput.addEventListener('input', function () {
